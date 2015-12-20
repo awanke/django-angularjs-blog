@@ -33,6 +33,8 @@ def index(req):
 def code(req):
     return render_to_response('code.html')
 
+def media(req):
+    return render_to_response('media.html')
 
 def lab(req):
     return render_to_response('lab.html')

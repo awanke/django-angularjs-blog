@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     #django url
     url(r'^$', views.index, name='index'),
     url(r'^code/$', views.code, name='code'),
+    url(r'^media/$', views.media, name='media'),
     url(r'^lab/$', views.lab, name='lab'),
     url(r'^blog/$', views.blog, name='blog'),
     url(r'^knowledge/$', views.know, name='know'),
