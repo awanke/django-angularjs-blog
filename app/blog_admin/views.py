@@ -14,50 +14,52 @@ from app.decorater import login_require
 
 def index(req):
     try:
-        if req.session['user'] != '' or req.session['user'] is not None:
-            return render_to_response("blog_admin.html")
+        # if req.session['user'] != '' or req.session['user'] is not None:
+        #    return render_to_response("blog_admin.html")
+        return render_to_response("blog_admin.html")
     except:
         pass
     return render_to_response("badmin.html")
 
 
-@login_require
+#@login_require
 def blog(req):
     return render_to_response("blog_admin.html")
 
 
-@login_require
+#@login_require
 def know_admin(req):
     return render_to_response("know_admin.html")
 
 
-@login_require
+#@login_require
 def comment_admin(req):
     return render_to_response("comment_admin.html")
 
 
-@login_require
+# @login_require
 def know(req, kid=None):
     return render_to_response("new_know.html")
 
 
-@login_require
+# @login_require
 def create_blog(req, bid=None):
     return render_to_response("new_blog.html")
 
 
-@csrf_exempt
+# @csrf_exempt
 def login(req):
     body={}
     account = req.POST.get('account')
     password = req.POST.get('password')
+    print 999999999999999999999999999, account, password
     user = authenticate(username=account, password=password)
     if user is None:
         body['fail_mes'] = '用户或密码不正确～'
-        return HttpResponse(encodejson(7, body), content_type="application/json")
+    #    return HttpResponse(encodejson(7, body), content_type="application/json")
     if not user.is_active:
         body['fail_mes'] = '用户已被禁用～'
-        return HttpResponse(encodejson(13, body), content_type="application/json")
+    #    return HttpResponse(encodejson(13, body), content_type="application/json")
     req.session['user'] = account
     return HttpResponse(encodejson(1, body), content_type="application/json")
 
